@@ -58,12 +58,6 @@ Use the best model to classify the test set. Report test accuracy, precision, an
 - `get bow rep.py`: Script used to convert data into the bag of words representation.
 - `assignment2.py`: Sample script for data preprocessing and training a logistic regression classifier.
 
-## Running the Code
-
-1. Clone the repository.
-2. Ensure you have all the necessary packages installed.
-3. Run `assignment2.py` to preprocess the data and train a logistic regression model.
-4. Follow the instructions to implement parts 1, 2, and 3 of the assignment.
 
 ## Results
 
