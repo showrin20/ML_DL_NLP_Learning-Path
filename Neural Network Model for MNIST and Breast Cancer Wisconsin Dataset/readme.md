@@ -58,22 +58,4 @@ The CNN model outperformed the FCNN in terms of accuracy on the MNIST dataset.
      - Evaluation Metric: Cross-entropy loss
      - Optimizer: Adam
 
-### Conclusion
-The performance of the neural network models varied on the Breast Cancer Wisconsin dataset, with [add conclusion here based on outcomes].
 
-## Getting Started
-
-### Prerequisites
-
-- Python 3.x
-- PyTorch
-- NumPy
-- Matplotlib (for visualization, optional)
-
-### Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/neural-network-models.git
-cd neural-network-models
