@@ -5,4 +5,6 @@ Python is one of the most popular programming languages for machine learning and
 ## [Machine Learning notes ](https://stanford.edu/~shervine/teaching/cs-229/)
 ## [Machine Learning Resources](https://drive.google.com/drive/folders/1KcE3sarMfwZyRNyT2pS5SPox4D0C8PWP)
 
+https://rail.eecs.berkeley.edu/deeprlcourse/
+
 
