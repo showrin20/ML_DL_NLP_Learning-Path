@@ -9,7 +9,7 @@ https://rail.eecs.berkeley.edu/deeprlcourse/
 
 
 
-# simple Convolutional Neural Network (CNN)
+# Simple Convolutional Neural Network (CNN)
 
 ```python
 from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, Flatten, Dense
