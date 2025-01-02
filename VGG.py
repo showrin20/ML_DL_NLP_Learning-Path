@@ -38,8 +38,8 @@ model = Model(inputs=input_layer, outputs=output_layer)
 model.compile(
     optimizer=Adam(learning_rate=0.001),
     loss="categorical_crossentropy",
-    metrics=["accuracy"]  # Fixed the typo in "metrics"
+    metrics=["accuracy"] 
 )
 
 # Print model summary
-model.summary()  # Fixed the typo in "summary"
+model.summary() 
