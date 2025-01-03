@@ -9,7 +9,7 @@ https://rail.eecs.berkeley.edu/deeprlcourse/
 
 
 
-# Simple Convolutional Neural Network (CNN)
+#  Lightweight CNN Architecture
 
 ```python
 from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, Flatten, Dense
@@ -65,8 +65,10 @@ model.summary()
    - A `Dense` layer with `num_classes` units and a `softmax` activation function for classification.
   
 
+## **Usage**: Suitable for datasets with complex patterns and high feature variability.
 
-# CNN Model for Image Classification
+
+# Deep Custom CNN Architecture
 
 
 ## 🧩 Model Architecture : The model is inspired by VGG-style CNN architectures and consists of:
@@ -140,3 +142,95 @@ model.compile(
 ```python
 model.summary()
 ```
+
+## usage: Ideal for smaller datasets or scenarios where computational efficiency is crucial.
+
+
+### Pretrained ResNet50**
+
+```python
+from tensorflow.keras.applications import ResNet50
+from tensorflow.keras.layers import Flatten, Dense
+from tensorflow.keras.models import Model
+from tensorflow.keras.optimizers import Adam
+
+# Load the ResNet50 model with pre-trained weights
+resnet_model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+# Add custom layers
+x = Flatten()(resnet_model.output)
+output_layer = Dense(num_classes, activation="softmax")(x)
+
+model_resnet = Model(inputs=resnet_model.input, outputs=output_layer)
+model_resnet.compile(optimizer=Adam(learning_rate=0.001), loss="categorical_crossentropy", metrics=["accuracy"])
+model_resnet.summary()
+```
+
+**Model Architecture**: 
+- Deep residual learning framework with skip connections.
+
+## **Usage**: - Excellent for transfer learning, allowing for rapid training on small datasets with good performance.
+
+
+### Pretrained InceptionV3**
+
+```python
+from tensorflow.keras.applications import InceptionV3
+from tensorflow.keras.layers import Flatten, Dense
+from tensorflow.keras.models import Model
+from tensorflow.keras.optimizers import Adam
+
+# Load the InceptionV3 model with pre-trained weights
+inception_model = InceptionV3(weights='imagenet', include_top=False, input_shape=(299, 299, 3))
+# Add custom layers
+x = Flatten()(inception_model.output)
+output_layer = Dense(num_classes, activation="softmax")(x)
+
+model_inception = Model(inputs=inception_model.input, outputs=output_layer)
+model_inception.compile(optimizer=Adam(learning_rate=0.001), loss="categorical_crossentropy", metrics=["accuracy"])
+model_inception.summary()
+```
+
+**Model Architecture**: 
+- Inception modules that allow for multiple filter sizes at each layer.
+
+**Usage**: 
+- Suitable for diverse image recognition tasks with varying object scales.
+
+
+###  Pretrained VGG-16**
+
+```python
+from tensorflow.keras.applications import VGG16
+from tensorflow.keras.layers import Flatten, Dense
+from tensorflow.keras.models import Model
+from tensorflow.keras.optimizers import Adam
+
+# Load the VGG-16 model with pre-trained weights
+vgg_model = VGG16(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+# Add custom layers
+x = Flatten()(vgg_model.output)
+output_layer = Dense(num_classes, activation="softmax")(x)
+
+model_vgg = Model(inputs=vgg_model.input, outputs=output_layer)
+model_vgg.compile(optimizer=Adam(learning_rate=0.001), loss="categorical_crossentropy", metrics=["accuracy"])
+model_vgg.summary()
+```
+
+**Model Architecture**: 
+- Sequential architecture with small filters and deep layers.
+
+**Usage**: 
+- Well-suited for high-resolution image classification tasks.
+
+## 📊 **Comparison Table**
+
+| Feature                 | Deep Custom CNN             | Lightweight CNN           | Pretrained ResNet50       | Pretrained InceptionV3    | Pretrained VGG-16         |
+|-------------------------|-----------------------------|---------------------------|---------------------------|---------------------------|---------------------------|
+| **Input Shape**         | Variable (depends on dataset)| (64, 64, 3)               | (224, 224, 3)             | (299, 299, 3)             | (224, 224, 3)             |
+| **Layers**              | Deep Conv2D + MaxPooling    | Fewer Conv2D + MaxPooling | ResNet with skip connections| Inception modules         | Deep Conv2D               |
+| **Trainable Parameters**| High                        | Low                       | High                       | High                      | High                      |
+| **Transfer Learning**    | No                          | No                        | Yes                       | Yes                       | Yes                       |
+| **Best For**           | Complex datasets            | Fast training on small datasets | Small datasets            | Diverse image recognition  | High-resolution tasks     |
+
+
+
