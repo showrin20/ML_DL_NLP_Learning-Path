@@ -234,3 +234,130 @@ model_vgg.summary()
 
 
 
+
+
+# Autoencoder Implementation
+
+### Key Features
+- **Convolutional Encoder**: Uses convolutional layers to extract features and down-sample the input data into a latent representation.
+- **Convolutional Decoder**: Uses transposed convolutional layers to reconstruct the input data from the latent representation.
+- **Customizable Latent Dimension**: The latent space dimension can be adjusted to control the compression level.
+- **Configurable Input Shape**: The model supports inputs of arbitrary dimensions (e.g., images with different sizes and channels).
+- **MSE Loss**: The autoencoder minimizes the mean squared error (MSE) loss to optimize reconstruction quality.
+
+## Model Architecture
+
+### Encoder
+The encoder consists of:
+1. **Input Layer**: Accepts input data of specified shape.
+2. **Convolutional Layers**: Extract features with increasing filters (32, 64, 128, 256) and ReLU activation.
+3. **Max Pooling Layers**: Down-sample spatial dimensions.
+4. **Flatten Layer**: Converts feature maps to a 1D vector.
+5. **Dense Layer (Bottleneck)**: Compresses the features into a latent space representation of size `latent_dim`.
+
+### Decoder
+The decoder consists of:
+1. **Input Layer**: Accepts latent space vectors.
+2. **Dense Layer**: Expands the latent vector back into spatial dimensions.
+3. **Reshape Layer**: Converts the expanded vector into feature maps.
+4. **Transposed Convolutional Layers**: Reconstruct the input using filters (256, 128, 64, 32) and ReLU activation.
+5. **Upsampling Layers**: Increase spatial dimensions back to the original input size.
+6. **Output Layer**: Produces the final reconstructed image with a sigmoid activation.
+
+### Autoencoder
+The autoencoder combines the encoder and decoder into a single model:
+- **Input**: Original data (e.g., images).
+- **Output**: Reconstructed data.
+
+## Model Specifications
+- **Input Shape**: `(32, 32, 3)` (default; configurable).
+- **Latent Dimension**: `128` (default; configurable).
+- **Loss Function**: Mean Squared Error (MSE).
+- **Optimizer**: Adam.
+
+## Full Code
+```python
+from tensorflow.keras import layers, Model
+
+def build_encoder(input_shape, latent_dim):
+    encoder_input = layers.Input(shape=input_shape, name="encoder_input")
+    x = layers.Conv2D(32, (3, 3), activation="relu", padding="same")(encoder_input)
+    x = layers.MaxPooling2D((2, 2), padding="same")(x)
+    x = layers.Conv2D(64, (3, 3), activation="relu", padding="same")(x)
+    x = layers.MaxPooling2D((2, 2), padding="same")(x)
+    x = layers.Conv2D(128, (3, 3), activation="relu", padding="same")(x)
+    x = layers.MaxPooling2D((2, 2), padding="same")(x)
+    x = layers.Conv2D(256, (3, 3), activation="relu", padding="same")(x)
+    x = layers.MaxPooling2D((2, 2), padding="same")(x)
+    x = layers.Flatten()(x)
+    bottleneck = layers.Dense(latent_dim, activation="relu", name="bottleneck")(x)
+    return Model(encoder_input, bottleneck, name="encoder")
+
+def build_decoder(latent_dim, output_shape):
+    decoder_input = layers.Input(shape=(latent_dim,), name="decoder_input")
+    x = layers.Dense(2 * 2 * 256, activation="relu")(decoder_input)
+    x = layers.Reshape((2, 2, 256))(x)
+    x = layers.Conv2DTranspose(256, (3, 3), activation="relu", padding="same")(x)
+    x = layers.UpSampling2D((2, 2))(x)
+    x = layers.Conv2DTranspose(128, (3, 3), activation="relu", padding="same")(x)
+    x = layers.UpSampling2D((2, 2))(x)
+    x = layers.Conv2DTranspose(64, (3, 3), activation="relu", padding="same")(x)
+    x = layers.UpSampling2D((2, 2))(x)
+    x = layers.Conv2DTranspose(32, (3, 3), activation="relu", padding="same")(x)
+    x = layers.UpSampling2D((2, 2))(x)
+    decoder_output = layers.Conv2DTranspose(output_shape[-1], (3, 3), activation="sigmoid", padding="same", name="decoder_output")(x)
+    return Model(decoder_input, decoder_output, name="decoder")
+
+def build_autoencoder(input_shape, latent_dim):
+    encoder = build_encoder(input_shape, latent_dim)
+    decoder = build_decoder(latent_dim, input_shape)
+
+    autoencoder_input = layers.Input(shape=input_shape, name="autoencoder_input")
+    encoded = encoder(autoencoder_input)
+    decoded = decoder(encoded)
+
+    autoencoder = Model(autoencoder_input, decoded, name="autoencoder")
+    return autoencoder, encoder, decoder
+
+# Define input shape and latent space dimension
+input_shape = (32, 32, 3)
+latent_dim = 128
+
+# Build the autoencoder
+autoencoder, encoder, decoder = build_autoencoder(input_shape, latent_dim)
+
+# Compile the autoencoder
+autoencoder.compile(optimizer="adam", loss="mse")
+
+# Display the model architecture
+autoencoder.summary()
+```
+
+## Usage
+### Building the Autoencoder
+```python
+# Define input shape and latent space dimension
+input_shape = (32, 32, 3)
+latent_dim = 128
+
+# Build the autoencoder
+autoencoder, encoder, decoder = build_autoencoder(input_shape, latent_dim)
+
+# Compile the autoencoder
+autoencoder.compile(optimizer="adam", loss="mse")
+```
+
+### Training
+```python
+# Train the autoencoder
+history = autoencoder.fit(x_train, x_train, epochs=20, batch_size=64, validation_data=(x_val, x_val))
+```
+
+### Reconstruction
+```python
+# Encode and decode an image
+encoded_img = encoder.predict(x_test)
+decoded_img = decoder.predict(encoded_img)
+```
+
+
