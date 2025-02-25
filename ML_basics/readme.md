@@ -64,3 +64,52 @@ P(B|A) = [P(A|B)P(B)] / P(A)
 **Conditional Independence:**
 - Events A and B are independent given C if: P(A∩B|C) = P(A|C)P(B|C)
 
+
+# 📊 Performance Metrics in Machine Learning  
+
+
+1️⃣ **Accuracy**:  
+   - Measures the overall correctness of the model.  
+   - Formula:  
+     \[
+     Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
+     \]  
+   - Best for balanced datasets.  
+
+2️⃣ **Precision** (Positive Predictive Value):  
+   - Focuses on how many predicted positives are actually correct.  
+   - Formula:  
+     \[
+     Precision = \frac{TP}{TP + FP}
+     \]  
+   - Useful when False Positives (FP) need to be minimized (e.g., spam detection).  
+
+3️⃣ **Recall** (Sensitivity/True Positive Rate):  
+   - Measures how many actual positives were correctly identified.  
+   - Formula:  
+     \[
+     Recall = \frac{TP}{TP + FN}
+     \]  
+   - Important when False Negatives (FN) should be minimized (e.g., disease detection).  
+
+4️⃣ **F1-Score**:  
+   - Harmonic mean of Precision and Recall.  
+   - Formula:  
+     \[
+     F1 = 2 \times \frac{Precision \times Recall}{Precision + Recall}
+     \]  
+   - Best for imbalanced datasets.  
+
+5️⃣ **F-Beta Score**:  
+   - Generalized form of F1-Score with a weight factor **β**.  
+   - Formula:  
+     \[
+     F_{\beta} = (1 + \beta^2) \times \frac{Precision \times Recall}{\beta^2 \times Precision + Recall}
+     \]  
+   - **β > 1**: More emphasis on Recall.  
+   - **β < 1**: More emphasis on Precision.  
+
+## 📺 Video Reference  
+[Performance Metrics Explained in Hindi](https://youtu.be/5vqk6HnITko?si=nuskNBtieowPpYLm)  
+
+
