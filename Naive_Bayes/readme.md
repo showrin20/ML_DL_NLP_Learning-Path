@@ -22,10 +22,11 @@ P(y|X) \propto P(y) \prod_{i} P(f_i|y)
 - Multiply probabilities and select the higher value.
 
 **Smoothing:** Avoids zero probabilities by adding a constant (Laplace Smoothing).
+```
 \[
 P(w_i|c) = \frac{count(w_i, c) + 1}{\sum_{w \in V} count(w, c) + |V|}
 \]
-
+````
 **Variants:**
 1. **Multinomial Naive Bayes:** Based on word frequency.
 2. **Binary Multinomial Naive Bayes:** Only considers word presence (not frequency).
