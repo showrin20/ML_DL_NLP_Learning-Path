@@ -158,32 +158,175 @@ Naive Bayes classifiers can be of different types depending on how they model th
 
 
 
-## **5. Training the Naive Bayes Classifier**
-### **Prior Probability Calculation**
-For class \( c \):
-\[
-P(c) = \frac{N_c}{N_{doc}}
-\]
-where:
-- \( N_c \) is the number of documents in class \( c \)
-- \( N_{doc} \) is the total number of documents
+The document covers training a Naive Bayes classifier in detail. Here’s a summary of the training process:
 
-### **Likelihood Estimation**
-Using **Maximum Likelihood Estimation (MLE)**:
-\[
-P(w_i | c) = \frac{count(w_i, c)}{\sum_{w \in V} count(w, c)}
-\]
-where \( V \) is the vocabulary set.
+### **Training the Naive Bayes Classifier**
+1. **Class Prior Estimation**:  
+   - Compute \( P(c) \), the prior probability of each class \( c \), using:
+     \[
+     P(c) = \frac{N_c}{N_{\text{doc}}}
+     \]
+     where \( N_c \) is the number of documents in class \( c \), and \( N_{\text{doc}} \) is the total number of documents.
 
-### **Laplace (Add-One) Smoothing**
-To avoid zero probabilities:
-\[
-P(w_i | c) = \frac{count(w_i, c) + 1}{\sum_{w \in V} (count(w, c) + 1)}
-\]
+2. **Word Likelihood Estimation**:  
+   - Compute \( P(w_i | c) \), the likelihood of word \( w_i \) given class \( c \), using:
+     \[
+     P(w_i | c) = \frac{\text{count}(w_i, c)}{\sum_{w \in V} \text{count}(w, c)}
+     \]
+     where \( \text{count}(w_i, c) \) is the number of times \( w_i \) appears in all documents of class \( c \), and \( V \) is the vocabulary.
 
-### **Handling Unknown Words**
-- If a word in the test document is unseen in training, it should be ignored.
-- Alternatively, smoothing techniques like add-k smoothing can assign small probabilities to unseen words.
+3. **Handling Zero Probabilities (Smoothing)**:  
+   - Apply **Laplace smoothing (add-one smoothing)** to avoid zero probabilities:
+     \[
+     P(w_i | c) = \frac{\text{count}(w_i, c) + 1}{\sum_{w \in V} (\text{count}(w, c) + 1)}
+     \]
+
+4. **Building the Model**:  
+   - Store \( \log P(c) \) and \( \log P(w | c) \) to prevent numerical underflow.
+   - Use a **bag-of-words** assumption (word order is ignored).
+
+### **Testing the Naive Bayes Classifier**
+1. Compute the posterior probability for each class:
+   \[
+   c_{NB} = \arg\max_{c \in C} \log P(c) + \sum_{i \in \text{positions}} \log P(w_i | c)
+   \]
+2. Assign the document to the class with the highest probability.
+
+
+
+
+### **Optimizations for Naive Bayes Classifier**  
+
+To improve the performance of the Naive Bayes classifier, especially in **text classification and sentiment analysis**, several optimizations are applied:  
+
+
+### **1. Binary Multinomial Naive Bayes**  
+- Instead of counting word frequencies, **binary Naive Bayes** considers only whether a word appears (1) or does not appear (0) in a document.  
+- This is useful in sentiment analysis, where the presence of words is more informative than their frequency.  
+- **Implementation:**  
+  - Convert word occurrences to binary (presence/absence).  
+  - Modify the likelihood calculation to count the number of documents containing a word instead of the total word count.  
+  - Helps reduce overfitting and improves generalization.  
+
+**Example:**  
+| Word | Standard Naive Bayes Count | Binary Naive Bayes Count |  
+|------|-------------------------|----------------------|  
+| great  | 3 | 2 |  
+| boring | 2 | 1 |  
+| fun  | 2 | 2 |  
+
+---
+
+### **2. Handling Negation in Sentiment Analysis**  
+- Negation can reverse sentiment (e.g., *"not happy"* vs. *"happy"*).  
+- A **simple rule-based approach** is used:
+  - Append a prefix `NOT_` to words following negation words (`not, never, no, n't`) **until the next punctuation**.  
+
+**Example:**  
+- `"I didn't like this movie, but I"` → `"I didn't NOT_like NOT_this NOT_movie, but I"`  
+- Words like **"NOT_like"** will be more common in negative reviews, improving classification accuracy.
+
+---
+
+### **3. Stop Word Removal (Optional)**  
+- Common words (`the, a, is`) might not contribute much to classification.  
+- **Two approaches:**
+  - **Predefined stop word lists** (e.g., NLTK stop words).  
+  - **Frequency-based filtering** (removing the top 10-100 most frequent words).  
+- In **most text classification tasks, removing stop words doesn't improve performance** significantly, so it's often skipped.
+
+---
+
+### **4. Using Sentiment Lexicons**  
+- When training data is **small or imbalanced**, predefined **sentiment lexicons** help improve classification.  
+- **Popular lexicons:**
+  - **MPQA Subjectivity Lexicon** (Wilson et al., 2005)
+  - **Liu’s Opinion Lexicon** (Hu and Liu, 2004)
+  - **LIWC (Linguistic Inquiry and Word Count)**
+- **How it's used:**
+  - Instead of individual words, add **two binary features**:  
+    - `"word is in positive lexicon"`  
+    - `"word is in negative lexicon"`  
+  - Helps generalize better when training data is limited.
+
+**Example:**  
+| Word | In Positive Lexicon? | In Negative Lexicon? |  
+|------|----------------------|----------------------|  
+| love  | ✅ (1) | ❌ (0) |  
+| terrible | ❌ (0) | ✅ (1) |  
+| movie  | ❌ (0) | ❌ (0) |  
+
+---
+
+### **5. Feature Selection for Faster Training**  
+- **Remove uninformative words** that don’t contribute to classification.  
+- **Common feature selection methods:**
+  - **Information Gain** (how much a word helps distinguish between classes).
+  - **Chi-Square Test** (measures independence of word & class).
+  - **Mutual Information** (quantifies dependency between word & class).  
+
+**Example (Top 5 most informative words in sentiment analysis):**  
+| Word | Information Gain |  
+|------|----------------|  
+| amazing  | 0.89 |  
+| horrible | 0.85 |  
+| waste  | 0.80 |  
+| excellent | 0.75 |  
+| awful | 0.72 |  
+
+---
+
+### **6. Laplace Smoothing (Add-One Smoothing)**
+- Prevents **zero probabilities** when a word appears in test data but not in training.  
+- Formula:  
+  \[
+  P(w_i | c) = \frac{\text{count}(w_i, c) + 1}{\sum_{w \in V} (\text{count}(w, c) + 1)}
+  \]
+- Ensures **every word has a small nonzero probability**.
+
+---
+
+### **7. Log Probability Computation (Avoiding Underflow)**
+- Multiplying many small probabilities leads to **numerical underflow**.  
+- Instead of:
+  \[
+  P(c) \times P(w_1 | c) \times P(w_2 | c) \times P(w_3 | c) ...
+  \]
+  We take the **logarithm** to transform multiplication into addition:
+  \[
+  \log P(c) + \sum_{i} \log P(w_i | c)
+  \]
+- This improves **stability and speed**.
+
+---
+
+### **Final Optimized Naive Bayes Algorithm**  
+1. **Preprocess Data:**
+   - Convert text to lowercase.
+   - Apply **binary Naive Bayes** (optional).
+   - Handle **negation** (if needed).
+   - Remove **stop words** (if beneficial).
+   - Use **sentiment lexicons** (if training data is small).
+2. **Train Model:**
+   - Compute **class priors** \( P(c) \).
+   - Compute **word likelihoods** \( P(w | c) \) with **Laplace smoothing**.
+   - Store **log probabilities**.
+3. **Classify New Text:**
+   - Compute the **log posterior** probability for each class.
+   - Assign the class with the **highest probability**.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
