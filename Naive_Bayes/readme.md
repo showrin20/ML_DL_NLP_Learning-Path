@@ -12,21 +12,13 @@
    - For new data, calculate: P(y|f1, f2, ..., fn)
    - Choose the class with the highest probability.
 
-**Formula:**
-\[
-P(y|X) \propto P(y) \prod_{i} P(f_i|y)
-\]
 
 **Example:** For the sentence *"predictable with no fun"*:
 - Calculate P(positive) and P(negative) using word counts.
 - Multiply probabilities and select the higher value.
 
 **Smoothing:** Avoids zero probabilities by adding a constant (Laplace Smoothing).
-```
-\[
-P(w_i|c) = \frac{count(w_i, c) + 1}{\sum_{w \in V} count(w, c) + |V|}
-\]
-````
+
 **Variants:**
 1. **Multinomial Naive Bayes:** Based on word frequency.
 2. **Binary Multinomial Naive Bayes:** Only considers word presence (not frequency).
