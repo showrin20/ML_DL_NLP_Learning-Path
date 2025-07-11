@@ -90,7 +90,15 @@ Learn to deploy AI models and build end-to-end pipelines.
 - **Version Control with Git and GitHub**
   - Master Git for version control and collaboration.
   - Learn to manage code repositories on GitHub.
-  - Reference: [Module 9: Git and GitHub](#).
+  - Reference: [Module 9: Git and GitHub](#).**
+
+
+
+
+
+
+
+
 
 #  Lightweight CNN Architecture
 
