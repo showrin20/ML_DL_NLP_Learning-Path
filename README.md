@@ -7,7 +7,90 @@ Python is one of the most popular programming languages for machine learning and
 
 ### [Notes](https://rail.eecs.berkeley.edu/deeprlcourse/)
 
+# Roadmap to Becoming an AI Engineer
 
+This roadmap outlines the essential steps to become a proficient AI engineer, based on the skills and topics covered in a comprehensive Data Science, Machine Learning, and MLOps bootcamp. It is structured into four phases: Fundamentals, Machine Learning, Deep Learning, and Production & Deployment.
+
+## Phase 1: Fundamentals
+Build a strong foundation in programming, data manipulation, and databases.
+
+- **Python Programming**
+  - Learn Python fundamentals (variables, data structures, loops, functions).
+  - Master data analysis libraries: NumPy, Pandas, Matplotlib.
+  - Explore Python for data science and machine learning applications.
+  - Reference: [Module 1: Python Fundamentals for DS and ML](https://www.udemy.com/course/module-1-python-fundamentals-for-ds-and-ml/)
+  - Practice: Solve coding challenges on platforms like LeetCode or HackerRank.
+
+- **Advanced Python for AI**
+  - Study object-oriented programming, decorators, and generators.
+  - Learn to optimize Python code for AI workflows.
+  - Reference: [Module 2: Advanced Python for AI](https://www.udemy.com/course/module-2-advanced-python-for-ai/)
+
+- **SQL for Data Science**
+  - Understand relational databases and SQL queries.
+  - Practice data extraction, filtering, and aggregation using MySQL.
+  - Reference: [Module 3: MySQL for Data Science](https://www.udemy.com/course/module-3-my-sql-for-data-science/)
+
+- **Career Preparation**
+  - Develop a professional resume and optimize your LinkedIn profile.
+  - Learn career guidelines specific to AI and data science roles.
+  - Reference: Course module on "Resume and LinkedIn" and "Module 1: Career Guideline."
+
+## Phase 2: Machine Learning
+Gain expertise in machine learning algorithms and model building.
+
+- **Core Machine Learning Concepts**
+  - Study supervised and unsupervised learning algorithms (e.g., linear regression, decision trees, clustering).
+  - Implement algorithms from scratch to understand their mechanics.
+  - Use scikit-learn to build predictive models.
+  - Reference: [Module 5: Machine Learning](#) and course section on "Implement machine learning algorithms from scratch."
+
+- **Practical Machine Learning**
+  - Work on real-world datasets to build and evaluate models.
+  - Learn model evaluation metrics (accuracy, precision, recall, F1-score).
+  - Practice hyperparameter tuning and cross-validation.
+  - Reference: Course section on "Build predictive models using scikit-learn."
+
+- **Big Data and Distributed Computing**
+  - Explore tools like Apache Spark for handling large datasets.
+  - Understand distributed computing concepts for scalability.
+  - Reference: Course section on "Work with big data using distributed computing."
+
+## Phase 3: Deep Learning
+Dive into neural networks and advanced AI techniques.
+
+- **Deep Learning Fundamentals**
+  - Learn neural network architectures (e.g., CNNs, RNNs).
+  - Understand frameworks like TensorFlow or PyTorch.
+  - Reference: Course section on "Get familiar with Deep Learning."
+
+- **Practical Deep Learning**
+  - Build and train deep learning models for tasks like image classification or NLP.
+  - Experiment with transfer learning and pre-trained models.
+  - Practice optimizing neural networks (e.g., regularization, dropout).
+
+- **Advanced Topics**
+  - Explore generative AI models (e.g., GANs, VAEs).
+  - Study reinforcement learning basics.
+  - Reference: Course materials and external resources like DeepLearning.AI.
+
+## Phase 4: Production & Deployment
+Learn to deploy AI models and build end-to-end pipelines.
+
+- **MLOps and Model Deployment**
+  - Learn to deploy machine learning models to production using tools like Docker, Kubernetes, or Flask.
+  - Understand CI/CD pipelines for AI workflows.
+  - Reference: Course section on "Deploy machine learning models to production."
+
+- **End-to-End Data Science Pipelines**
+  - Build pipelines for data ingestion, preprocessing, model training, and inference.
+  - Automate workflows using tools like Airflow or MLflow.
+  - Reference: Course section on "Build end-to-end data science pipelines."
+
+- **Version Control with Git and GitHub**
+  - Master Git for version control and collaboration.
+  - Learn to manage code repositories on GitHub.
+  - Reference: [Module 9: Git and GitHub](#).
 
 #  Lightweight CNN Architecture
 
