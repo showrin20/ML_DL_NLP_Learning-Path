@@ -3,7 +3,6 @@
 
 
 
-## 🟢 Beginner Competitions (Code/Playground Tier)
 
 
 ### 🟢 Beginner Competitions
@@ -17,7 +16,6 @@
 
 
 
-## 🟡 Intermediate Competitions
 
 
 ### 🟡 Intermediate Competitions
@@ -32,7 +30,6 @@
 
 
 
-## 🔴 Advanced Competitions (Real-World + DL)
 
 
 ### 🔴 Advanced Competitions
