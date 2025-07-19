@@ -5,7 +5,7 @@
 
 ## 🟢 Beginner Competitions (Code/Playground Tier)
 
-```md
+
 ### 🟢 Beginner Competitions
 
 - [ ] [Titanic - Machine Learning from Disaster](https://www.kaggle.com/competitions/titanic) — 🧠 Intro to ML, binary classification, data cleaning
@@ -13,13 +13,13 @@
 - [ ] [Spaceship Titanic](https://www.kaggle.com/competitions/spaceship-titanic) — 🧠 Tabular classification, preprocessing pipelines
 - [ ] [Digit Recognizer](https://www.kaggle.com/competitions/digit-recognizer) — 🧠 Computer vision basics with MNIST, CNNs
 - [ ] [Titanic (Playground Series - current)](https://www.kaggle.com/competitions/playground-series-s4e1) — 🧠 Seasonal realistic tasks with leaderboards
-```
+
 
 
 
 ## 🟡 Intermediate Competitions
 
-```md
+
 ### 🟡 Intermediate Competitions
 
 - [ ] [Tweet Sentiment Extraction](https://www.kaggle.com/competitions/tweet-sentiment-extraction) — 🧠 NLP, text preprocessing, token-level prediction
@@ -28,13 +28,13 @@
 - [ ] [RSNA Pneumonia Detection Challenge](https://www.kaggle.com/competitions/rsna-pneumonia-detection-challenge) — 🧠 Object detection, bounding boxes, medical datasets
 - [ ] [Google QUEST Q&A Labeling](https://www.kaggle.com/competitions/google-quest-challenge) — 🧠 NLP multi-label classification, BERT models
 - [ ] [Landmark Recognition 2020](https://www.kaggle.com/competitions/landmark-recognition-2020) — 🧠 Image retrieval, embeddings, EfficientNet
-```
+
 
 
 
 ## 🔴 Advanced Competitions (Real-World + DL)
 
-```md
+
 ### 🔴 Advanced Competitions
 
 - [ ] [Feedback Prize - English Language Learning](https://www.kaggle.com/competitions/feedback-prize-english-language-learning) — 🧠 Transformers, BERT for text regression, multi-output NLP
@@ -43,6 +43,6 @@
 - [ ] [Happywhale and Dolphin - Image Matching](https://www.kaggle.com/competitions/happy-whale-and-dolphin) — 🧠 Metric learning, embeddings, image classification at scale
 - [ ] [RSNA Breast Cancer Detection](https://www.kaggle.com/competitions/rsna-breast-cancer-detection) — 🧠 Vision detection, class imbalance, DICOM handling
 - [ ] [SIIM-FISABIO-RSNA COVID-19 Detection](https://www.kaggle.com/competitions/siim-covid19-detection) — 🧠 Object detection, segmentation, medical imaging
-```
+
 
 
